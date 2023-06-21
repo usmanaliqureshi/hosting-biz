@@ -1,0 +1,24 @@
+{
+  "name": "hosting-biz",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usmanaliqureshi/hosting-biz.git"
+  },
+  "keywords": [
+    "hosting",
+    "business",
+    "website"
+  ],
+  "author": "Usman Ali Qureshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/usmanaliqureshi/hosting-biz/issues"
+  },
+  "homepage": "https://github.com/usmanaliqureshi/hosting-biz#readme"
+}
