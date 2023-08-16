@@ -501,7 +501,7 @@ const Pricing = () => {
             </ul>
             <a
               className="mt-5 inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800"
-              href="https://github.com/htmlstreamofficial/preline/tree/main/examples/html"
+              href="#"
             >
               Sign up
             </a>
