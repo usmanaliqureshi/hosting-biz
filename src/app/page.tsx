@@ -379,7 +379,7 @@ const Pricing = () => {
                   />
                 </svg>
                 <span className="text-gray-800 dark:text-gray-400">
-                  10 Sub-domains
+                  One-Click WordPress Installer
                 </span>
               </li>
             </ul>
@@ -387,7 +387,7 @@ const Pricing = () => {
               className="mt-5 inline-flex justify-center items-center gap-2 rounded-md border-2 border-blue-600 font-semibold text-blue-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm py-3 px-4 dark:text-blue-500 dark:border-blue-600 dark:hover:border-blue-700"
               href="#"
             >
-              Sign up
+              Sign Up
             </a>
           </div>
           {/* End Card */}
@@ -495,7 +495,7 @@ const Pricing = () => {
                   />
                 </svg>
                 <span className="text-gray-800 dark:text-gray-400">
-                  25 Sub-domains
+                  One-Click WordPress Installer
                 </span>
               </li>
             </ul>
@@ -503,7 +503,7 @@ const Pricing = () => {
               className="mt-5 inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800"
               href="#"
             >
-              Sign up
+              Sign Up
             </a>
           </div>
           {/* End Card */}
@@ -606,7 +606,7 @@ const Pricing = () => {
                   />
                 </svg>
                 <span className="text-gray-800 dark:text-gray-400">
-                  50 Sub-domains
+                  One-Click WordPress Installer
                 </span>
               </li>
             </ul>
@@ -614,7 +614,7 @@ const Pricing = () => {
               className="mt-5 inline-flex justify-center items-center gap-2 rounded-md border-2 border-blue-600 font-semibold text-blue-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm py-3 px-4 dark:text-blue-500 dark:border-blue-600 dark:hover:border-blue-700"
               href="#"
             >
-              Sign up
+              Sign Up
             </a>
           </div>
           {/* End Card */}
@@ -717,7 +717,7 @@ const Pricing = () => {
                   />
                 </svg>
                 <span className="text-gray-800 dark:text-gray-400">
-                  100 Sub-domains
+                  One-Click WordPress Installer
                 </span>
               </li>
             </ul>
@@ -725,7 +725,7 @@ const Pricing = () => {
               className="mt-5 inline-flex justify-center items-center gap-2 rounded-md border-2 border-blue-600 font-semibold text-blue-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm py-3 px-4 dark:text-blue-500 dark:border-blue-600 dark:hover:border-blue-700"
               href="#"
             >
-              Sign up
+              Sign Up
             </a>
           </div>
           {/* End Card */}
