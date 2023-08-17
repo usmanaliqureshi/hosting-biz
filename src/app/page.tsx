@@ -188,11 +188,11 @@ const Pricing = () => {
       <>
         {/* Hero */}
         <div className="bg-blue-100">
-          <div className="bg-gradient-to-b from-violet-600/[.15] via-transparent">
+          <div className="bg-gradient-to-b from-blue-600/[.15] via-transparent">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-8">
               {/* Title */}
               <div className="max-w-3xl text-center mx-auto">
-                <h1 className="block font-bold text-gray-700 text-4xl sm:text-5xl md:text-6xl lg:text-6xl">
+                <h1 className="block font-bold text-gray-700 text-4xl sm:text-5xl md:text-6xl lg:text-6xl drop-shadow-[2px_2px_2px_rgba(255,255,255)]">
                   Reliable Hosting Solution<br /> Just a Click Away!
                 </h1>
               </div>
@@ -205,7 +205,7 @@ const Pricing = () => {
               {/* Buttons */}
               <div className="text-center">
 
-                <Link className="inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-800 shadow-lg border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800" href="#get-started" scroll={true}>
+                <Link className="inline-flex justify-center items-center transition ease-in-out delay-100 hover:scale-105 duration-300 gap-x-3 text-center bg-blue-600 hover:bg-blue-800 shadow-lg border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800" href="#get-started" scroll={true}>
                   Get Started
                   <svg
                     className="w-2.5 h-2.5"
