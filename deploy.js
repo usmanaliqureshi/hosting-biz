@@ -31,7 +31,7 @@ async function deployproject() {
             forcePasv: true // Use passive mode
         })
 
-        console.log("Succesfully deployed site")
+        console.log("\u2713  Succesfully deployed the Project")
         return 0;
 
     } catch (e) {
