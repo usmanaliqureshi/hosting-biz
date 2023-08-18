@@ -1,45 +1,47 @@
 /**
  * Automatically Deploy the Project
  */
-const FtpDeploy = require("ftp-deploy");
-const dotenv = require('dotenv');
-const path = require('path');
+const FtpDeploy = require( "ftp-deploy" );
+const dotenv    = require( 'dotenv' );
+const path      = require( 'path' );
 
 // DotEnv
-dotenv.config({ path: ".env" });
+dotenv.config( { path : ".env" } );
 
 async function deployproject() {
-  try {
+    try {
         // Path to /build
-        const outDir = path.join(process.cwd(), "/build");
+        const outDir = path.join( process.cwd(), "/build" );
 
-        await new FtpDeploy().deploy({
+        console.log( "○ Starting project deployment to https://clients.usmanaliqureshi.com" );
 
-          // FTP Credentials
-            user: process.env.FTP_USER,
-            password: process.env.FTP_PASS, // Your credentials
-            host: process.env.FTP_HOST, // Your credentials
-            port: process.env.FTP_PORT, // Your credentials
+        await new FtpDeploy().deploy( {
 
-            localRoot: outDir, // Location of build files in project
-            remoteRoot: "/", // Upload location on remote, replace with subfolder on FTP-server if required
+            // FTP Credentials
+            user     : process.env.FTP_USER,
+            password : process.env.FTP_PASS, // Your credentials
+            host     : process.env.FTP_HOST, // Your credentials
+            port     : process.env.FTP_PORT, // Your credentials
 
-            include: ["*", "**/*"], // Upload all files from build folder
-            exclude: [], // Exclude no files
+            localRoot  : outDir, // Location of build files in project
+            remoteRoot : "/", // Upload location on remote, replace with subfolder on FTP-server if required
 
-            deleteRemote: false, // Set to true if you want to delete ALL FILES in the remote root before uploading
-            forcePasv: true // Use passive mode
-        })
+            include : ["*", "**/*"], // Upload all files from build folder
+            exclude : [], // Exclude no files
 
-        console.log("\u2713  Succesfully deployed the Project")
+            deleteRemote : false, // Set to true if you want to delete ALL FILES in the remote root before uploading
+            forcePasv    : true // Use passive mode
+        } )
+
+        console.log( "\u2713  Succesfully deployed the Project" );
         return 0;
 
-    } catch (e) {
+    } catch ( e ) {
 
-        console.error("An error occured during deployment:", e);
+        console.error( "An error occured during deployment:", e );
         return 1;
 
-  }
+    }
 }
 
-deployproject().then((code) => process.exit(code));
+deployproject().then( ( code ) => process.exit( code ) );
