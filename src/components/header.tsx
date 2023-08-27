@@ -158,7 +158,7 @@ const Header = (props) => {
                             </a>
                             <a
                                 className="flex items-center gap-x-2 font-medium text-white/[.8] hover:text-white sm:border-l sm:border-white/[.3] sm:my-6 sm:pl-6"
-                                href="#"
+                                href="/login"
                             >
                                 <svg
                                     className="w-4 h-4"
