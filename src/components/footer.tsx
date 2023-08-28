@@ -14,7 +14,7 @@ const Footer = () => {
                                 HostingWala
                             </a>
                             <p className="mt-3 text-gray-400">
-                                At HostingWala, we make getting your website online a breeze. Join us for a hassle-free journey to your digital presence.
+                                At HostingWala, we make getting your we`bsite online a breeze. Join us for a hassle-free journey to your digital presence.
                             </p>
                         </div>
                         {/* End Col */}

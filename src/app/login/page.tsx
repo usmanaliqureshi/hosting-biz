@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-const WebHosting = () => {
+const LoginPage = () => {
 
     useEffect(() => {
         import('preline');
@@ -25,7 +25,7 @@ const WebHosting = () => {
                                 Sign in
                             </h1>
                             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                                Don't have an account yet?
+                                Don&lsquo;t have an account yet?
                                 <a
                                     className="text-blue-600 decoration-2 hover:underline font-medium pl-1"
                                     href="../examples/html/signup.html"
@@ -85,7 +85,7 @@ const WebHosting = () => {
                                                 id="email"
                                                 name="email"
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                                                required=""
+                                                required
                                                 aria-describedby="email-error"
                                             />
                                             <div className="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
@@ -128,7 +128,7 @@ const WebHosting = () => {
                                                 id="password"
                                                 name="password"
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                                                required=""
+                                                required
                                                 aria-describedby="password-error"
                                             />
                                             <div className="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
@@ -193,4 +193,4 @@ const WebHosting = () => {
     )
 }
 
-export default WebHosting;
+export default LoginPage;
