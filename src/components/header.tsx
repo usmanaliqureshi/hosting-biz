@@ -183,7 +183,7 @@ const Header = (props) => {
                         {/* Title */}
                         <div className="max-w-3xl text-center mx-auto">
                             <h1 className="block font-bold text-gray-700 text-4xl sm:text-5xl md:text-6xl lg:text-6xl drop-shadow-[2px_2px_2px_rgba(255,255,255)]">
-                                {props.title}<br /> {props.sub}
+                                {props.title}<br /> <span className='font-extralight lg:text-3xl'>{props.sub}</span>
                             </h1>
                         </div>
                         {/* End Title */}
