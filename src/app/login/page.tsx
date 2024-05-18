@@ -1,16 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-
 // Components
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const LoginPage = () => {
-
-    useEffect(() => {
-        import('preline');
-    }, []);
 
     return (
         <>
