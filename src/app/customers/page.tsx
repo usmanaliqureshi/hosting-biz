@@ -1,4 +1,5 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { sql } from '@vercel/postgres';
 import { CustomerField } from "../lib/definitions";
@@ -7,6 +8,15 @@ import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
 
 async function getCustomers() {
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  const isLoggedIn = await isAuthenticated();
+  const user = await getUser();
+
+  if (!isLoggedIn) {
+    redirect('/');
+  }
+
+
   try {
     const data = await sql<CustomerField>`
       SELECT
@@ -583,10 +593,10 @@ export default async function Protected() {
                       <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                         <div>
                           <h2 className="text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                            Users
+                            Customers
                           </h2>
                           <p className="text-sm text-gray-600 dark:text-neutral-400">
-                            Add users, edit and more.
+                            Add customers, edit and more.
                           </p>
                         </div>
                         <div>
@@ -599,7 +609,7 @@ export default async function Protected() {
                             </a>
                             <a
                               className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                              href="#"
+                              href="/new-customer/"
                             >
                               <svg
                                 className="flex-shrink-0 size-4"
@@ -616,7 +626,7 @@ export default async function Protected() {
                                 <path d="M5 12h14" />
                                 <path d="M12 5v14" />
                               </svg>
-                              Add user
+                              Add New
                             </a>
                           </div>
                         </div>

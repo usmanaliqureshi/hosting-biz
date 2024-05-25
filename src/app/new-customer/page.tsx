@@ -1,32 +1,8 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { sql } from '@vercel/postgres';
-import { CustomerField } from "../lib/definitions";
-import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
-
-async function getCustomers() {
-  try {
-    const data = await sql<CustomerField>`
-      SELECT
-        id,
-        name,
-        email,
-        image_url,
-        status,
-        created_at
-      FROM customers
-      ORDER BY name ASC
-    `;
-
-    const customers = data.rows;
-    return customers;
-  } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch all customers.');
-  }
-}
+import AddCustomerForm from "@/app/ui/add-customer"
 
 export default async function Protected() {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -34,11 +10,8 @@ export default async function Protected() {
   const user = await getUser();
 
   if (!isLoggedIn) {
-    console.log('Not Authenticated');
     redirect('/');
   }
-
-  const customers = await getCustomers();
 
   return (
     <>
@@ -360,7 +333,7 @@ export default async function Protected() {
               {/* Logo */}
               <a
                 className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
-                href="/"
+                href="/dashboard"
                 aria-label="Preline"
               >
                 HostingWala
@@ -374,7 +347,7 @@ export default async function Protected() {
           <div className="w-full lg:ps-64">
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Grid */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 hidden">
                 {/* Card */}
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
                   <div className="p-4 md:p-5">
@@ -580,15 +553,20 @@ export default async function Protected() {
                 {/* End Card */}
               </div>
               {/* Card */}
-              <div className="flex flex-col">
-                <div className="-m-1.5 overflow-x-auto">
-                  <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-800 dark:border-neutral-700">
-                      <Footer />
-                    </div>
+              {/* Card Section */}
+              <div className="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                {/* Card */}
+                <div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-neutral-900">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-neutral-200">
+                      Add New Customer
+                    </h2>
                   </div>
+                  <AddCustomerForm />
                 </div>
+                {/* End Card */}
               </div>
+              {/* End Card Section */}
               {/* End Card */}
             </div>
           </div>
