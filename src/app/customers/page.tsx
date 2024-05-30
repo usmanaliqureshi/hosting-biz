@@ -6,6 +6,12 @@ import { CustomerField } from "../lib/definitions";
 import Customers from "../ui/customer"
 import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Customers - Dashboard',
+  description: 'Customer Management',
+};
 
 async function getCustomers() {
   const { isAuthenticated, getUser } = getKindeServerSession();

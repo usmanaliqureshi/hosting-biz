@@ -5,6 +5,12 @@ import { sql } from '@vercel/postgres';
 import { CustomerField } from "../lib/definitions";
 import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Hosting Dashboard',
+};
 
 async function getCustomers() {
   try {

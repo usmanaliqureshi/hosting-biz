@@ -3,6 +3,12 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import DashboardNav from "../ui/navigation";
 import AddCustomerForm from "@/app/ui/add-customer"
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Add New Customer - Dashboard',
+  description: 'Add a new customer with all details',
+};
 
 export default async function Protected() {
   const { isAuthenticated, getUser } = getKindeServerSession();
