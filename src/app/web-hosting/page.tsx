@@ -1,16 +1,15 @@
 'use client';
 
+<<<<<<< HEAD
 import { useEffect } from 'react';
 
+=======
+>>>>>>> remotes/origin/development
 // Components
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const WebHosting = () => {
-
-    useEffect(() => {
-        import('preline');
-    }, []);
 
     return (
         <>
