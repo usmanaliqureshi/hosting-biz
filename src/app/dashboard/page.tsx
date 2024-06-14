@@ -1,10 +1,16 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { sql } from '@vercel/postgres';
 import { CustomerField } from "../lib/definitions";
-import Customers from "../ui/customer"
 import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Hosting Dashboard',
+};
 
 async function getCustomers() {
   try {
@@ -32,6 +38,11 @@ export default async function Protected() {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const isLoggedIn = await isAuthenticated();
   const user = await getUser();
+
+  if (!isLoggedIn) {
+    console.log('Not Authenticated');
+    redirect('/');
+  }
 
   const customers = await getCustomers();
 

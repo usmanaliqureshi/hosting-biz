@@ -1,19 +1,16 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { sql } from '@vercel/postgres';
-import { CustomerField } from "../lib/definitions";
-import Customers from "../ui/customer"
-import Footer from "@/components/footer";
 import DashboardNav from "../ui/navigation";
+import AddCustomerForm from "@/app/ui/add-customer"
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'Customers - Dashboard',
-  description: 'Customer Management',
+  title: 'Add New Customer - Dashboard',
+  description: 'Add a new customer with all details',
 };
 
-async function getCustomers() {
+export default async function Protected() {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const isLoggedIn = await isAuthenticated();
   const user = await getUser();
@@ -21,35 +18,6 @@ async function getCustomers() {
   if (!isLoggedIn) {
     redirect('/');
   }
-
-
-  try {
-    const data = await sql<CustomerField>`
-      SELECT
-        id,
-        name,
-        email,
-        image_url,
-        status,
-        created_at
-      FROM customers
-      ORDER BY name ASC
-    `;
-
-    const customers = data.rows;
-    return customers;
-  } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch all customers.');
-  }
-}
-
-export default async function Protected() {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const isLoggedIn = await isAuthenticated();
-  const user = await getUser();
-
-  const customers = await getCustomers();
 
   return (
     <>
@@ -591,161 +559,20 @@ export default async function Protected() {
                 {/* End Card */}
               </div>
               {/* Card */}
-              <div className="flex flex-col">
-                <div className="-m-1.5 overflow-x-auto">
-                  <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-800 dark:border-neutral-700">
-                      {/* Header */}
-                      <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
-                        <div>
-                          <h2 className="text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                            Customers
-                          </h2>
-                          <p className="text-sm text-gray-600 dark:text-neutral-400">
-                            Add customers, edit and more.
-                          </p>
-                        </div>
-                        <div>
-                          <div className="inline-flex gap-x-2">
-                            <a
-                              className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                              href="/new-customer/"
-                            >
-                              <svg
-                                className="flex-shrink-0 size-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M5 12h14" />
-                                <path d="M12 5v14" />
-                              </svg>
-                              Add New
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      {/* End Header */}
-                      {/* Table */}
-                      <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                        <thead className="bg-gray-50 dark:bg-neutral-800">
-                          <tr>
-                            <th scope="col" className="ps-6 py-3 text-start">
-                              <label
-                                htmlFor="hs-at-with-checkboxes-main"
-                                className="flex"
-                              >
-                                <input
-                                  type="checkbox"
-                                  className="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                  id="hs-at-with-checkboxes-main"
-                                />
-                                <span className="sr-only">Checkbox</span>
-                              </label>
-                            </th>
-                            <th
-                              scope="col"
-                              className="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start"
-                            >
-                              <div className="flex items-center gap-x-2">
-                                <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                                  Name
-                                </span>
-                              </div>
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-start">
-                              <div className="flex items-center gap-x-2">
-                                <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                                  Status
-                                </span>
-                              </div>
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-start">
-                              <div className="flex items-center gap-x-2">
-                                <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                                  Created
-                                </span>
-                              </div>
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-end" />
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
-
-                          {customers.map((customer) => {
-                            return <Customers id={customer.id} name={customer.name} email={customer.email} image={customer.image_url} status={customer.status} />
-                          })}
-
-                        </tbody>
-                      </table>
-                      {/* End Table */}
-                      {/* Footer */}
-                      <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
-                        <div>
-                          <p className="text-sm text-gray-600 dark:text-neutral-400">
-                            <span className="font-semibold text-gray-800 dark:text-neutral-200">
-                              12
-                            </span>{" "}
-                            results
-                          </p>
-                        </div>
-                        <div>
-                          <div className="inline-flex gap-x-2">
-                            <button
-                              type="button"
-                              className="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            >
-                              <svg
-                                className="flex-shrink-0 size-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="m15 18-6-6 6-6" />
-                              </svg>
-                              Prev
-                            </button>
-                            <button
-                              type="button"
-                              className="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-                            >
-                              Next
-                              <svg
-                                className="flex-shrink-0 size-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="m9 18 6-6-6-6" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      {/* End Footer */}
-                      <Footer />
-                    </div>
+              {/* Card Section */}
+              <div className="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                {/* Card */}
+                <div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-neutral-900">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-neutral-200">
+                      Add New Customer
+                    </h2>
                   </div>
+                  <AddCustomerForm />
                 </div>
+                {/* End Card */}
               </div>
+              {/* End Card Section */}
               {/* End Card */}
             </div>
           </div>
